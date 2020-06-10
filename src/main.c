@@ -1,34 +1,43 @@
 #include <stdio.h>
 #include <locale.h>
+#include <stdlib.h>
+#include <string.h>
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* twoSum(int* nums, int numsSize, int target, int* returnSize){
+	int * v = malloc(sizeof(int));
+	for(int i  = 0 ; i < numsSize ; i++ ){
+		for(int j = i+1; j < numsSize; j++){
+			if(nums[j] == target - nums[i]){
+				int indexes[] = { i, j};
+				int * v = malloc(2 * sizeof(int));
+				memcpy(v,indexes, sizeof(int)*2);
+				(*returnSize) = 2;
+				return v;
+			}
+		}
+	}
+	return v;
+}
+
 
 int main(){
 
 	printf("%s\n" , "Learning Programming Lanaguges");
 	printf("%s\n" , "c-basics");
 
+	int values[] = {2,7,11,15};
+	int count = 4;
+	int target = 9;
+	int returnedSize = 0;
+	int * returned =twoSum(values, count ,target  ,  &returnedSize);
+	for(int i = 0 ; i < returnedSize ; i++ ){
+		printf("%d " , returned[i] );
+	}
+	printf("\n");
 
-	int a = 10;
-	float b = 10.0;
-	char c = 'c';
-	char * string = "hello world";
-	int * ptr = &a;
-
-	printf("%s a char string\n" , string);
-	printf("%d an int\n" , a);
-	printf("%f a float\n" , b);
-	printf("%.2f a float to 2 decimal places\n" , b);
-	printf("%c a char\n" , c);
-	printf("%p a pointer\n" , ptr);
-	printf("%d int pointer deferenced\n" , *ptr);
-
-	setlocale(LC_ALL, "");
-	struct lconv * l = localeconv();
-
-	printf("decimal point of locale = %s\n", l->decimal_point);
-	printf("thousands sep of locale = %s\n", (*l).thousands_sep);
-	printf("int_curr_symbol of locale = %s\n", (*l).int_curr_symbol);
-	printf("positive_sign of locale = %s\n", (*l).positive_sign);
-	printf("negative_sign of locale = %s\n", (*l).negative_sign);
-
+	free(returned);
 	return 0;
 }
