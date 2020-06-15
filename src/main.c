@@ -7,7 +7,7 @@
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* twoSum(int* nums, int numsSize, int target, int* returnSize){
-	int * v = malloc(sizeof(int));
+	int * v = NULL;
 	for(int i  = 0 ; i < numsSize ; i++ ){
 		for(int j = i+1; j < numsSize; j++){
 			if(nums[j] == target - nums[i]){
@@ -22,22 +22,61 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize){
 	return v;
 }
 
-
-int main(){
-
-	printf("%s\n" , "Learning Programming Lanaguges");
-	printf("%s\n" , "c-basics");
+void runTwoSum(){
 
 	int values[] = {2,7,11,15};
 	int count = 4;
 	int target = 9;
 	int returnedSize = 0;
 	int * returned =twoSum(values, count ,target  ,  &returnedSize);
-	for(int i = 0 ; i < returnedSize ; i++ ){
-		printf("%d " , returned[i] );
-	}
-	printf("\n");
+	if(returned != NULL){
 
-	free(returned);
+		for(int i = 0 ; i < returnedSize ; i++ ){
+			printf("%d " , returned[i] );
+		}
+		printf("\n");
+
+		free(returned);
+	}
+	else{
+		printf("No target found\n");
+	}
+}
+
+
+int addition(int a , int b){
+	return a + b;
+}
+
+int subtraction(int a , int b ){
+	return a - b;
+}
+
+int multiply(int a , int b ){
+	return a * b;
+}
+
+int divide(int a , int b ){
+	return a / b;
+}
+
+int main(){
+
+	printf("%s\n" , "Learning Programming Lanaguges");
+	printf("%s\n" , "c-basics");
+
+	runTwoSum();
+	
+	int result;
+	int (*p)(int, int);	
+	p = &addition;
+	result = (*p)(1,2);
+	printf("result = %d\n" , result);
+
+
+
+	p = &subtraction;
+	result = (*p)(1,2);
+	printf("result = %d\n" , result);
 	return 0;
 }
