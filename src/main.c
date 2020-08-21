@@ -2,6 +2,8 @@
 #include <locale.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/mylib.h"
+
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().
@@ -62,21 +64,21 @@ int divide(int a , int b ){
 
 int main(){
 
-	printf("%s\n" , "Learning Programming Lanaguges");
-	printf("%s\n" , "c-basics");
+  printf("%s\n", "Learning Programming Lanaguges");
+  printf("%s\n", "c-basics");
 
-	runTwoSum();
-	
-	int result;
-	int (*p)(int, int);	
-	p = &addition;
-	result = (*p)(1,2);
-	printf("result = %d\n" , result);
+  int DEFAULT_BUFFER_SIZE = 100;
+  char *buffer = malloc(sizeof(char) * DEFAULT_BUFFER_SIZE);
+  memset(buffer, '#', DEFAULT_BUFFER_SIZE);
 
 
+  char * ptr = buffer;
+  while((*ptr) != '\0'){
+    printf("%c" , *ptr);
+    ptr++;
+  }
 
-	p = &subtraction;
-	result = (*p)(1,2);
-	printf("result = %d\n" , result);
-	return 0;
+  free(buffer);
+
+  return 0;
 }
