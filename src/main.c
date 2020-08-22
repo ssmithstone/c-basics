@@ -62,34 +62,48 @@ int divide(int a , int b ){
 	return a / b;
 }
 
+void loop_chars(char * p){
+  while((*p) != '\0'){
+    printf("%c\n" , *p);
+    p++;
+  }
+}
+
+void loop_chars_ptr( char * *ptr){
+  while((*ptr) != NULL){
+    printf("%s\n" , *ptr);
+    ptr++;
+  }
+  printf("\n");
+}
+
 int main(){
 
   printf("%s\n", "Learning Programming Lanaguges");
   printf("%s\n", "c-basics");
   fprintf(stdout, "Reading in stdin\n");
-  
-  int DEFAULT_BUFFER_SIZE = 10;
-  char *buffer = malloc(sizeof(char) * DEFAULT_BUFFER_SIZE);
-  memset(buffer, '\n', DEFAULT_BUFFER_SIZE);
 
-  fprintf(stdout, "Please enter a number %d digits maximum\n" , DEFAULT_BUFFER_SIZE - 1 );
-  
-  int intValue = 0; 
-  
-  char *result = NULL;
-  while (result == NULL) {
-    result = fgets(buffer, DEFAULT_BUFFER_SIZE, stdin);
+  char * name[] = {"stephen" , "ste" , "smithy" , NULL } ;
+  loop_chars_ptr(name);
 
-    if(!sscanf(buffer, "%d", &intValue)){
-      fprintf(stderr, "Invalid number\n");
-    }
-    else{
-      fprintf(stdout , "User entered %d\n" , intValue);
-    }
+  char a[5] = {'c','h','a','r','\0'};
+
+  for(int i = 0 ; i < 5 ; i++){
+    printf("%c\n" , a[i]);
   }
 
+  char * p;
+  for(p = a; p < &a[4]; p++){
+    printf("%c\n" , *p);
+  }
 
-  free(buffer);
+  printf("\n");
+
+  char *pp = a;
+  loop_chars(pp);
+
+  printf("\n");
+
 
   return 0;
 }
