@@ -66,17 +66,28 @@ int main(){
 
   printf("%s\n", "Learning Programming Lanaguges");
   printf("%s\n", "c-basics");
-
-  int DEFAULT_BUFFER_SIZE = 100;
+  fprintf(stdout, "Reading in stdin\n");
+  
+  int DEFAULT_BUFFER_SIZE = 10;
   char *buffer = malloc(sizeof(char) * DEFAULT_BUFFER_SIZE);
-  memset(buffer, '#', DEFAULT_BUFFER_SIZE);
+  memset(buffer, '\n', DEFAULT_BUFFER_SIZE);
 
+  fprintf(stdout, "Please enter a number %d digits maximum\n" , DEFAULT_BUFFER_SIZE - 1 );
+  
+  int intValue = 0; 
+  
+  char *result = NULL;
+  while (result == NULL) {
+    result = fgets(buffer, DEFAULT_BUFFER_SIZE, stdin);
 
-  char * ptr = buffer;
-  while((*ptr) != '\0'){
-    printf("%c" , *ptr);
-    ptr++;
+    if(!sscanf(buffer, "%d", &intValue)){
+      fprintf(stderr, "Invalid number\n");
+    }
+    else{
+      fprintf(stdout , "User entered %d\n" , intValue);
+    }
   }
+
 
   free(buffer);
 
