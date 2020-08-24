@@ -81,28 +81,16 @@ int main(){
 
   printf("%s\n", "Learning Programming Lanaguges");
   printf("%s\n", "c-basics");
-  fprintf(stdout, "Reading in stdin\n");
 
-  char * name[] = {"stephen" , "ste" , "smithy" , NULL } ;
-  loop_chars_ptr(name);
 
-  char a[5] = {'c','h','a','r','\0'};
-
-  for(int i = 0 ; i < 5 ; i++){
-    printf("%c\n" , a[i]);
+  char * buffer = NULL;
+  size_t len  = 0;
+  ssize_t read;
+  while((read = getline(&buffer , &len , stdin)) != -1){
+    fprintf(stdout, "Retrieved line of length %zu\n" , read);
+    fprintf(stdout, "readline = %s" , buffer);
   }
-
-  char * p;
-  for(p = a; p < &a[4]; p++){
-    printf("%c\n" , *p);
-  }
-
-  printf("\n");
-
-  char *pp = a;
-  loop_chars(pp);
-
-  printf("\n");
+  free(buffer);
 
 
   return 0;
